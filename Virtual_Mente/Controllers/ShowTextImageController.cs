@@ -13,7 +13,7 @@ namespace Virtual_Mente.Controllers
 
         public ActionResult Test()
         {
-            ViewBag.Name = getText ();
+            ViewBag.Name = "Pedro";
             return View();
         }
 
