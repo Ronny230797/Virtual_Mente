@@ -18,8 +18,7 @@ namespace Virtual_Mente
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            ConnectionDBController connectionDB = new ConnectionDBController();
-            connectionDB.openConnection();
+            
         }
     }
 }

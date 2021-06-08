@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.SqlClient;
 
-namespace Virtual_Mente.Controllers
+namespace Virtual_Mente.Models
 {
     public class ConnectionDBController : Controller
     {
         String bondConnection = "Data source=LAPTOP-PHDA6TV8\\MSSQLSERVER19;Initial Catalog=VirtualMente; Integrated Security=True";
-        public SqlConnection connection = new SqlConnection ();
+        public SqlConnection connection = new SqlConnection();
 
 
         public ConnectionDBController()
@@ -25,9 +25,9 @@ namespace Virtual_Mente.Controllers
                 connection.Open();
                 Console.WriteLine("Connection open");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("Failed to open "+ex.Message);
+                Console.WriteLine("Failed to open " + ex.Message);
             }
 
         }
