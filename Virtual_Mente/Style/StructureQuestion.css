@@ -1,0 +1,31 @@
+﻿.cardback {
+    background-color: #00CC66;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    color: black;
+    font-family: cursive;
+    font-size: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.logo {
+    background-color: #00CC66;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.button {
+    border-radius: 10px;
+    background-color: #F75C03;
+    padding: 20px;
+    margin-top: 30px;
+    font-family: cursive;
+    font-size: 50px;
+}
