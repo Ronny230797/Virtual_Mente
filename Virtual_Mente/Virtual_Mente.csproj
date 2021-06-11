@@ -130,6 +130,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\CUENTAMENTE.png" />
+    <Content Include="Img\LOGO.png" />
+    <Content Include="Img\TRIVIALMENTE.png" />
     <Content Include="Javascript\General.js" />
     <Content Include="Javascript\Main-ChooseGame.js" />
     <Content Include="Scripts\bootstrap.js" />

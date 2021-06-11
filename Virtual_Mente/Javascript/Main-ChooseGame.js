@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     if (user) {
         saveLocalStorage('username',user);
-        Swal.fire(`Entered usuario: ${user}`);
+        Swal.fire(`BIENVENIDO: ${user}`);
     }
 
 })()
