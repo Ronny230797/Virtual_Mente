@@ -16,6 +16,11 @@ namespace Virtual_Mente.Controllers
             ViewBag.Name = "Pedro";
             return View();
         }
+        public ActionResult Structure()
+        {
+            ViewBag.Name = "Pedro";
+            return View();
+        }
 
         // GET: ShowTextImage
         public ActionResult Index()

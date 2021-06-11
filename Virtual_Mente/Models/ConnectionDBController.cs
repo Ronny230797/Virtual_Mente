@@ -4,37 +4,60 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Virtual_Mente.Models
 {
     public class ConnectionDBController : Controller
     {
-        String bondConnection = "Data source=LAPTOP-PHDA6TV8\\MSSQLSERVER19;Initial Catalog=VirtualMente; Integrated Security=True";
-        public SqlConnection connection = new SqlConnection();
-
-
-        public ConnectionDBController()
+        String connectString = "Data source=LAPTOP-PHDA6TV8\\MSSQLSERVER19;Initial Catalog=VirtualMente; Integrated Security=True";
+       
+        private SqlConnection con = null;
+        private SqlCommand cmd = null;
+        private SqlDataReader reader = null;
+        
+    
+        /// <param name="parametros">Parámetros necesarios para la ejecución del Stored Procedure.</param>
+        /// <param name="SP">Nombre del Stored Procedure a ejecutar.</param>
+    
+        public List<string> GetValores(SqlParameter[] parametros, string SP)
         {
-            connection.ConnectionString = bondConnection;
-        }
-
-        public void openConnection()
-        {
+            List<string> resultado = new List<string>();
             try
             {
-                connection.Open();
-                Console.WriteLine("Connection open");
+                con = new SqlConnection(connectString);
+                cmd = new SqlCommand
+                {
+                    Connection = con
+                };
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = SP;
+                cmd.Parameters.AddRange(parametros);
+
+                con.Open();
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i <= reader.FieldCount; i++)
+                        {
+                            resultado.Add(reader.GetValue(i).ToString());
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine("Failed to open " + ex.Message);
+                Console.WriteLine(e.Message);
             }
-
-        }
-
-        public void closeConnection()
-        {
-            connection.Close();
+            finally
+            {
+                reader.Dispose();
+                con.Dispose();
+            }
+            return resultado;
         }
     }
 }
