@@ -7,15 +7,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/Javascript/General.js"></script>
     <title>@ViewBag.Title</title>
 </head>
-<body style="background-color: #138496">
+<body style="background-color: #F1C40F">
+    <!-- Image and text -->
+    <nav class="navbar navbar-light" style="background-color: #2274A5; color: black; font-family:fantasy;">
+        <a class="navbar-brand" href="#" style="font-size: 45px;">
+            <img src="~/Img/LOGO.png" style="width:70px;height:70px;" />
+            VIRTUALMENTE
+        </a>
+        <div class="navbar-brand navbar-right"><a href="#" style="color:white;">Inicio</a></div>
+        <div class="navbar-brand navbar-right"><a href="#" style="color:white;">TrivialMENTE</a></div>
+        <div class="navbar-brand navbar-right"><a href="#" style="color:white;">CuentaMENTE</a></div>
+    </nav>
     <div>
         @RenderBody()
     </div>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
 </body>
 </html>
