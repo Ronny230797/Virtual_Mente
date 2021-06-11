@@ -9,6 +9,8 @@ namespace Virtual_Mente.Controllers
     public class ChooseGameController : Controller
     {
         public ActionResult Main()
+
+
         {
             return View();
         }
