@@ -189,7 +189,6 @@
     <Content Include="Img\TRIVIALMENTE.png" />
     <Content Include="Javascript\General.js" />
     <Content Include="Javascript\Main-ChooseGame.js" />
-    <Content Include="LOGO %281%29.png" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

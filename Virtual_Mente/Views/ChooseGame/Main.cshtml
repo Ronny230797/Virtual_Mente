@@ -1,7 +1,8 @@
 ﻿@{
     ViewBag.Title = "Main";
     Layout = "~/Views/Shared/_LayoutVM.cshtml";
-    string name = ViewBag.name;
+    var name = ViewBag.name;
+
 }
 <script src="~/Javascript/Main-ChooseGame.js"></script>
 
@@ -9,6 +10,18 @@
     <div class="row">
         <h1 style="font-size: 30px; font-family:fantasy;">ELIGE UN MODO DE JUEGO</h1>
     </div>
+
+    <div>
+        <ul>
+            @foreach (var item in name)
+            {
+
+                <li>@item.description</li>
+
+            }
+        </ul>
+    </div>
+
     <div class="row" style="margin-top:10px;">
         <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="card" style="background-color: #00CC66 ">

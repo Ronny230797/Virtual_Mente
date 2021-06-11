@@ -14,9 +14,36 @@ namespace Virtual_Mente.Controllers
 
             VirtualMenteEntities db = new VirtualMenteEntities();
 
-            var list = db.CATEGORIA.FirstOrDefault();
-            ViewBag.name = list.DescCategoria;
+            var exist = db.CATEGORIA.FirstOrDefault(x => x.DescCategoria == "Ciencias Naturales");
+
+            if (exist == null) {
+
+                CATEGORIA test = new CATEGORIA();
+                test.DescCategoria = "Ciencias Naturales";
+
+                db.CATEGORIA.Add(test);
+                db.SaveChanges();
+
+            }
+
+
+
+            List<Object> list = db.CATEGORIA.Select(x=> new Object{ 
+                 id = x.IDcategoria,
+                 description = x.DescCategoria
+            }).ToList();
+
+            ViewBag.name = list;
             return View();
         }
     }
+
+
+    public class Object {
+
+        public int id { set; get; }
+        public string description { set; get; }
+
+    }
+
 }
