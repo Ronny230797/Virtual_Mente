@@ -142,7 +142,6 @@
     <Content Include="Img\TRIVIALMENTE.png" />
     <Content Include="Javascript\General.js" />
     <Content Include="Javascript\Main-ChooseGame.js" />
-    <Content Include="LOGO %281%29.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -177,18 +176,14 @@
     <Content Include="Views\RandomCategory\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Content Include="Views\ShowTextImage\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Style\" />
     <Content Include="Views\QuestionGame\Main.cshtml" />
     <Content Include="Views\QuestionGame\_StructureQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

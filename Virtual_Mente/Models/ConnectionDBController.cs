@@ -10,7 +10,7 @@ namespace Virtual_Mente.Models
 {
     public class ConnectionDBController : Controller
     {
-        String connectString = "Data source=LAPTOP-PHDA6TV8\\MSSQLSERVER19;Initial Catalog=VirtualMente; Integrated Security=True";
+        String connectString = "Data source=DESKTOP-6UKN1R4\\MSSQLSERVER2019\\MSSQLSERVER19;Initial Catalog=VirtualMente; Integrated Security=True";
        
         private SqlConnection con = null;
         private SqlCommand cmd = null;
