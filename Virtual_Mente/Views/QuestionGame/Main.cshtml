@@ -1,13 +1,22 @@
 ﻿
 @{
-    ViewBag.Title = "Main";
+    string departamento = ViewBag.Department;
     Layout = "~/Views/Shared/_LayoutVM.cshtml";
 }
 
 <div>
 
-    @{ Html.RenderPartial("_StructureQuestion");
+    @{ Html.RenderPartial("_StructureQuestion", new { Depart = departamento });}
+
+    @*@{Html.Partial(
+      "_StructureQuestion",
+      new ViewDataDictionary(this.Vi‌​ewData) {
+    {
+      "hi", "hello"
     }
+      }
+    );
+    }*@
 
 </div>
 

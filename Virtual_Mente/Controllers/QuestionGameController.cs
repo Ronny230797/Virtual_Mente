@@ -9,13 +9,15 @@ namespace Virtual_Mente.Controllers
     public class QuestionGameController : Controller
     {
 
-        public ActionResult Main()
+        public ActionResult Main(string Department = "")
         {
+            ViewBag.Department = Department;
             return View();
         }
 
-        public ActionResult _StructureQuestion()
+        public ActionResult _StructureQuestion(string Depart)
         {
+            ViewBag.Dep = Depart;
             return PartialView();
         }
 

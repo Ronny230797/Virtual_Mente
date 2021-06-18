@@ -1,10 +1,12 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Style/StructureQuestion.css?x=1" />
-
+@{ 
+    string dep = ViewBag.Dep;
+}
 <div class="container">
 
     <div class="row">
-        <div class="col-lg-2 col-md-2 col-sm-2 logo">
-            <img src="~/Img/LOGO.png" height="100" width="100"/>
+        <div class="col-lg-2 col-md-2 col-sm-2 logo" id="xxx">
+            @*<img src="~/Img/CIENCIAS.png" height="150" width="150"/>*@
         </div>
         <div class="col-lg-10 col-md-10 col-sm-10 text-center cardback">
             <p>¿Cuántos ojos tiene una araña?</p>
@@ -22,12 +24,25 @@
     </div>
 </div>
 
+<script>
 
-@*<script>
+    $(document).ready(function () {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const product = urlParams.get('Department')
+        $('#example').text(product);
+        console.log(product);
 
-
-    let Hello = () => {
-        alert('Hello')
-    }
-
-</script>*@
+        if (product == "Inglés") {
+            $('#xxx').append(`<img src="../Img/INGLÉS.png" height="150" width="150" />`);
+        } else if (product == "Español") {
+            $('#xxx').append(`<img src="../Img/ESPAÑOL.png" height="150" width="150" />`);
+        } else if (product == "Matemáticas") {
+            $('#xxx').append(`<img src="../Img/MATEMÁTICA.png" height="150" width="150" />`);
+        } else if (product == "Ciencias Naturales") {
+            $('#xxx').append(`<img src="../Img/CIENCIAS.png" height="150" width="150" />`);
+        } else if (product == "Estudios Sociales") {
+            $('#xxx').append(`<img src="../Img/ESTUDIOS SOCIALES.png" height="150" width="150" />`);
+        }
+    });
+</script>

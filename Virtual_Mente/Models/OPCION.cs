@@ -19,7 +19,7 @@ namespace Virtual_Mente.Models
         public int IDPeguntaFK { get; set; }
         public int IDRepuestaCorrectaFK { get; set; }
     
-        public virtual PREGUNTA PREGUNTA { get; set; }
         public virtual REPUESTA_CORRECTA REPUESTA_CORRECTA { get; set; }
+        public virtual PREGUNTA PREGUNTA { get; set; }
     }
 }
