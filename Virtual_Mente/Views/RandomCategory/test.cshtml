@@ -3,8 +3,7 @@
     ViewBag.Title = "test";
     Layout = "~/Views/Shared/_LayoutVM.cshtml";
 }
-<link rel="stylesheet" type="text/css" href="~/Style/RandomQuestion.css?x=1" /> 
-
+<link rel="stylesheet" type="text/css" href="~/Style/RandomQuestion.css?x=1" />
 <div class="container">
 
     <div class="row">
@@ -14,43 +13,45 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #00CC66;"><label> Matematicas </label></div>
+        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Matematicas </label></div>
         <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
         <div class="col-lg-4 col-md-4 col-sm-4 text-center box"><label> Su categoria es:  </label></div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #00CC66;"><label> Espanol </label></div>
+        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Espanol </label></div>
         <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: wheat;"><label>  </label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center box" id="output" style="background-color: wheat;"><label>  </label></div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #00CC66;"><label> Ciencias </label></div>
+        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Ciencias </label></div>
         <div class="col-lg-5 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" onclick="Hello()" style="background-color: #F75C03;"><label> Aleatoria </label></div>
+        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" onclick="category()" style="background-color: #F75C03;"><label id="btn"> Aleatoria </label></div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #00CC66;"><label> Estudios Sociales </label></div>
+        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Estudios Sociales </label></div>
         <div class="col-lg-5 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" onclick="Hello()" style="background-color: #F1C40F;" ><label> Aceptar </label></div>
+        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" onclick="Hello()" style="background-color: #2274A5;"><label> Aceptar </label></div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #00CC66;"><label> Ingles </label></div>
+        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Ingles </label></div>
         <div class="col-lg-5 col-md-2 col-sm-2 text-center box"><label>  </label></div>
     </div>
-
-
-
-
-
 
 
 </div>
 
 <script>
-
     let Hello = () => {
         alert("Hello")
     }
-        
 </script>
 
+<script type="text/javascript">
+    let category = () => {
+        var things = ['Ingles', 'Matematicas', 'Ciencias', 'Estudios Sociales', 'Español'];
+        var thing = things[Math.floor(Math.random() * things.length)];
+        var output = document.getElementById('output');
+        output.innerHTML = thing;
+        
+    }
+</script>
