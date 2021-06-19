@@ -1,15 +1,17 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Style/StructureQuestion.css?x=1" />
 @{ 
     string dep = ViewBag.Dep;
+    string pregunta = ViewBag.Pregunta;
+
 }
 <div class="container">
 
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-2 logo" id="xxx">
-            @*<img src="~/Img/CIENCIAS.png" height="150" width="150"/>*@
+
         </div>
         <div class="col-lg-10 col-md-10 col-sm-10 text-center cardback">
-            <p>¿Cuántos ojos tiene una araña?</p>
+            <p>@pregunta</p>
         </div>
     </div>
     <div class="row">
