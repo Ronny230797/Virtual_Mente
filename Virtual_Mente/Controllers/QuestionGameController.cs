@@ -19,7 +19,7 @@ namespace Virtual_Mente.Controllers
         {
             ViewBag.Department = Department;
             ViewBag.Pregunta = traerPreguntas(Department);
-            traerOpciones();
+            ViewBag.IdPregunta = traerOpciones();
             ViewBag.Opcion1 = opcion1;
             ViewBag.Opcion2 = opcion2;
             ViewBag.Opcion3 = opcion3;
@@ -31,7 +31,7 @@ namespace Virtual_Mente.Controllers
         {
             ViewBag.Dep = Depart;
             ViewBag.Pregunta = traerPreguntas(Depart);
-            traerOpciones();
+            ViewBag.IdPregunta = traerOpciones();
             ViewBag.Opcion1 = opcion1;
             ViewBag.Opcion2 = opcion2;
             ViewBag.Opcion3 = opcion3;
@@ -75,7 +75,7 @@ namespace Virtual_Mente.Controllers
             return txt;
         }
 
-        public void traerOpciones()
+        public int traerOpciones()
         {
             VirtualMenteEntities db = new VirtualMenteEntities();
             List<Opcion> listaOpcionesXPregunta = new List<Opcion>();
@@ -103,7 +103,28 @@ namespace Virtual_Mente.Controllers
             opcion3 = listaOpcionesXPregunta[2].descripcion;
             opcion4 = listaOpcionesXPregunta[3].descripcion;
 
+            return idPregunta;
+
         }
+
+
+        public JsonResult isCorrect(int id, string respuesta) {
+
+            VirtualMenteEntities db = new VirtualMenteEntities();
+            string response = "Ok";
+
+            var result = db.OPCION.FirstOrDefault(x => x.IDPeguntaFK == id && x.REPUESTA_CORRECTA.DescRepuesta ==  respuesta);
+
+
+            if (result == null)
+            {
+                response = "Fail";
+            }
+
+            return Json(response, JsonRequestBehavior.AllowGet);
+
+        }
+
 
         public class Pregunta
         {
@@ -119,6 +140,7 @@ namespace Virtual_Mente.Controllers
             public string descripcion { set; get; }
             public int idPreguntaFK { set; get; }
             public int idRespuestaCorrectaFK { set; get; }
+            public int RespuestaCorrecta { set; get; }
         }
 
     }
