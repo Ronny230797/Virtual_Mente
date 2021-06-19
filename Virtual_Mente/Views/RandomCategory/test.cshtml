@@ -27,25 +27,26 @@
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Ciencias </label></div>
         <div class="col-lg-5 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" onclick="category()" style="background-color: #F75C03;"><label id="btn"> Aleatoria </label></div>
+        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" onclick="location.reload()" style="background-color: #F75C03;"><label id="btn"> Aleatoria </label></div>
     </div>
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Estudios Sociales </label></div>
         <div class="col-lg-5 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" style="background-color: #2274A5;"><label> Aceptar </label></div>
+        @*<div class="col-lg-5 col-md-2 col-sm-2 text-center box">
+            <a href="@Url.Action("Main", "QuestionGame", new { Department = materia })">Close Report</a>
+        </div>*@
+        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" style="background-color: #2274A5;"> <a style="color:#212529" href="@Url.Action("Main", "QuestionGame", new { Department = materia })">Aceptar</a></div>
+        
     </div>
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Ingles </label></div>
         <div class="col-lg-5 col-md-2 col-sm-2 text-center box"><label>  </label></div>
     </div>
 
-    <a href="@Url.Action("Main", "QuestionGame", new { Department = materia })">Close Report</a>
-
-
 </div>
 
 <script>
-    
+
 </script>
 
 <script src="~/Javascript/RandomCategory.js">

@@ -29,19 +29,19 @@
     $(document).ready(function () {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const product = urlParams.get('Department')
-        $('#example').text(product);
-        console.log(product);
+        const result = urlParams.get('Department')
+        $('#example').text(result);
+        console.log(result);
 
-        if (product == "Inglés") {
+        if (result == "Inglés") {
             $('#xxx').append(`<img src="../Img/INGLÉS.png" height="150" width="150" />`);
-        } else if (product == "Español") {
+        } else if (result == "Español") {
             $('#xxx').append(`<img src="../Img/ESPAÑOL.png" height="150" width="150" />`);
-        } else if (product == "Matemáticas") {
+        } else if (result == "Matemáticas") {
             $('#xxx').append(`<img src="../Img/MATEMÁTICA.png" height="150" width="150" />`);
-        } else if (product == "Ciencias Naturales") {
+        } else if (result == "Ciencias Naturales") {
             $('#xxx').append(`<img src="../Img/CIENCIAS.png" height="150" width="150" />`);
-        } else if (product == "Estudios Sociales") {
+        } else if (result == "Estudios Sociales") {
             $('#xxx').append(`<img src="../Img/ESTUDIOS SOCIALES.png" height="150" width="150" />`);
         }
     });
