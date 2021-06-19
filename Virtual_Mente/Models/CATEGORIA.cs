@@ -17,13 +17,13 @@ namespace Virtual_Mente.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CATEGORIA()
         {
-            this.TIPO_JUEGO = new HashSet<TIPO_JUEGO>();
+            this.PREGUNTA = new HashSet<PREGUNTA>();
         }
     
-        public int IDcategoria { get; set; }
+        public short IDcategoria { get; set; }
         public string DescCategoria { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TIPO_JUEGO> TIPO_JUEGO { get; set; }
+        public virtual ICollection<PREGUNTA> PREGUNTA { get; set; }
     }
 }

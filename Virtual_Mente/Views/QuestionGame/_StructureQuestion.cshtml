@@ -1,33 +1,84 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Style/StructureQuestion.css?x=1" />
-
-<div class="container">
+@{ 
+    string dep = ViewBag.Dep;
+    string pregunta = ViewBag.Pregunta;
+    string opcion1 = ViewBag.Opcion1;
+    string opcion2 = ViewBag.Opcion2;
+    string opcion3 = ViewBag.Opcion3;
+    string opcion4 = ViewBag.Opcion4;
+    int idpregunta = ViewBag.IdPregunta;
+}
+<div class="container" id="mainDiv" data-id="@idpregunta">
 
     <div class="row">
-        <div class="col-lg-2 col-md-2 col-sm-2 ">
-            <img src="~/LOGO (1).png" height="100" width="100"/>
+        <div class="col-lg-2 col-md-2 col-sm-2 logo" id="xxx">
+
         </div>
         <div class="col-lg-10 col-md-10 col-sm-10 text-center cardback">
-            <p>¿Cuántos ojos tiene una araña?</p>
+            <p>@pregunta</p>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" @*onclick="Hello()"*@><label>Respuesta</label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion1"><label>@opcion1</label></div>
         <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;">Respuesta</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion2">@opcion2</div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" @*onclick="Hello()"*@><label>Respuesta</label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion3"><label>@opcion3</label></div>
         <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;">Respuesta</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion4">@opcion4</div>
     </div>
 </div>
 
+<script>
 
-@*<script>
+    $(document).ready(function () {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const result = urlParams.get('Department')
+        $('#example').text(result);
+        console.log(result);
+
+        if (result == "Inglés") {
+            $('#xxx').append(`<img src="../Img/INGLÉS.png" height="150" width="150" />`);
+        } else if (result == "Español") {
+            $('#xxx').append(`<img src="../Img/ESPAÑOL.png" height="150" width="150" />`);
+        } else if (result == "Matemáticas") {
+            $('#xxx').append(`<img src="../Img/MATEMÁTICA.png" height="150" width="150" />`);
+        } else if (result == "Ciencias Naturales") {
+            $('#xxx').append(`<img src="../Img/CIENCIAS.png" height="150" width="150" />`);
+        } else if (result == "Estudios Sociales") {
+            $('#xxx').append(`<img src="../Img/ESTUDIOS SOCIALES.png" height="150" width="150" />`);
+        }
+    });
 
 
-    let Hello = () => {
-        alert('Hello')
-    }
+    $('.button').click(function () {
+        let idQuestion = $("#mainDiv").attr("data-id");
+        let selected = $(this).attr("data-id");
+        jQuery.ajax({
+            type: "GET",
+            dataType: "json",
+            async: false,
+            url: "/QuestionGame/isCorrect",
+            data: { id: idQuestion, respuesta: selected },
+            success: function (data) {
+               
+                if (data == 'Ok') {
+                    Swal.fire(`Respuesta Correcta`);
+                    let score = window.localStorage.getItem('scoreVirtualMente');
+                    console.log(score)
+                    score = parseFloat(score) + parseFloat(1);
+                    saveLocalStorage('scoreVirtualMente', score);
+                } else {
+                    Swal.fire(`Respuesta Incorrecta`);
+                }
 
-</script>*@
+            },
+        });
+
+    });
+
+
+
+</script>
