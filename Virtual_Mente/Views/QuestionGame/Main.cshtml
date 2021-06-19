@@ -2,12 +2,16 @@
 @{
     string departamento = ViewBag.Department;
     string pregunta = ViewBag.Pregunta;
+    string opcion1 = ViewBag.Opcion1;
+    string opcion2 = ViewBag.Opcion2;
+    string opcion3 = ViewBag.Opcion3;
+    string opcion4 = ViewBag.Opcion4;
     Layout = "~/Views/Shared/_LayoutVM.cshtml";
 }
 
 <div>
 
-    @{ Html.RenderPartial("_StructureQuestion", new { Depart = departamento, Pregunta = pregunta });}
+    @{ Html.RenderPartial("_StructureQuestion", new { Depart = departamento, Pregunta = pregunta, Opcion1 = opcion1, Opcion2 = opcion2, Opcion3 = opcion3, Opcion4 = opcion4});}
 
 </div>
 
