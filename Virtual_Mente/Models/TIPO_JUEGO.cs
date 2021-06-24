@@ -22,6 +22,7 @@ namespace Virtual_Mente.Models
     
         public int IDTipoJuego { get; set; }
         public string DescTipoJuego { get; set; }
+        public string Titulo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PREGUNTA> PREGUNTA { get; set; }

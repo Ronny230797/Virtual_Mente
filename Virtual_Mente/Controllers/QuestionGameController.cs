@@ -43,34 +43,42 @@ namespace Virtual_Mente.Controllers
         public string traerPreguntas(string Department = "")
         {
             int idCate = 0;
+            string txt = "";
             List<Pregunta> listaPreguntasCat = new List<Pregunta>();
             VirtualMenteEntities db = new VirtualMenteEntities();
 
             var exist = db.CATEGORIA.FirstOrDefault(x => x.DescCategoria == Department);
+           
 
-            idCate = exist.IDcategoria;
-
-            List<Pregunta> list = db.PREGUNTA.Select(x => new Pregunta
+            if (exist == null)
             {
-                id = x.IDpregunta,
-                descripcion = x.DescPregunta,
-                idTipoJuego = x.IDTipoJuegoFK,
-                idCategoria = x.IDCategoriaFK
-            }).ToList();
-
-            foreach (Pregunta var in list)
-            {
-                if (var.idCategoria == idCate)
-                {
-                    listaPreguntasCat.Add(var);
-                }
+                txt=traerPreguntasCuento(Department);
             }
+            else
+            {
+                idCate = exist.IDcategoria;
 
-            Random r1 = new Random();
+                List<Pregunta> list = db.PREGUNTA.Select(x => new Pregunta
+                {
+                    id = x.IDpregunta,
+                    descripcion = x.DescPregunta,
+                    idTipoJuego = x.IDTipoJuegoFK,
+                    idCategoria = x.IDCategoriaFK
+                }).ToList();
 
-            int aleatorio = r1.Next(listaPreguntasCat.Count);
-            string txt = listaPreguntasCat[aleatorio].descripcion;
-            idPregunta = listaPreguntasCat[aleatorio].id;
+                foreach (Pregunta var in list)
+                {
+                    if (var.idCategoria == idCate)
+                    {
+                        listaPreguntasCat.Add(var);
+                    }
+                }
+                Random r1 = new Random();
+                int aleatorio = r1.Next(listaPreguntasCat.Count);
+                txt = listaPreguntasCat[aleatorio].descripcion;
+                idPregunta = listaPreguntasCat[aleatorio].id;
+
+            }
 
             return txt;
         }
@@ -106,8 +114,37 @@ namespace Virtual_Mente.Controllers
             return idPregunta;
 
         }
+        
+         
+    public string traerPreguntasCuento(string titulo = "")
+        {
+            List<Pregunta> listaPreguntasCat = new List<Pregunta>();
+            VirtualMenteEntities db = new VirtualMenteEntities();
+            var exist = db.TIPO_JUEGO.FirstOrDefault(x => x.Titulo == titulo);
+            List<Pregunta> list = db.PREGUNTA.Select(x => new Pregunta
+            {
+                id = x.IDpregunta,
+                descripcion = x.DescPregunta,
+                idTipoJuego = x.IDTipoJuegoFK,
+                idCategoria = x.IDCategoriaFK
+            }).ToList();
 
+            foreach (Pregunta var in list)
+            {
+                if (exist.IDTipoJuego ==var.idTipoJuego )
+                {
+                    listaPreguntasCat.Add(var);
+                }
+            }
 
+            Random r1 = new Random();
+
+            int aleatorio = r1.Next(listaPreguntasCat.Count);
+            string txt = listaPreguntasCat[aleatorio].descripcion;
+            idPregunta = listaPreguntasCat[aleatorio].id;
+
+            return txt;
+        }
         public JsonResult isCorrect(int id, string respuesta) {
 
             VirtualMenteEntities db = new VirtualMenteEntities();
@@ -142,6 +179,11 @@ namespace Virtual_Mente.Controllers
             public int idRespuestaCorrectaFK { set; get; }
             public int RespuestaCorrecta { set; get; }
         }
-
+        public class TipoJuego
+        {
+            public int idTipoJuego { set; get; }
+            public string descTipoJuego { set; get; }
+            public string Titulo { set; get; }
+        }
     }
 }

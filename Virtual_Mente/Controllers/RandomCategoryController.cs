@@ -25,7 +25,6 @@ namespace Virtual_Mente.Controllers
             asignature = array[aleatorio];
             return asignature;
         }
-
         public ActionResult Index()
         {
             return View();
