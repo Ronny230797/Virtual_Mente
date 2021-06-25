@@ -2,11 +2,12 @@
 @{
     ViewBag.Title = "test";
     Layout = "~/Views/Shared/_LayoutVM.cshtml";
+    string materia = ViewBag.Materia;
 }
-<link rel="stylesheet" type="text/css" href="~/Style/RandomQuestion.css?x=1" /> 
-
+<link rel="stylesheet" type="text/css" href="~/Style/RandomQuestion.css?x=1" />
 <div class="container">
 
+ 
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 text-center tittle">
             <h2>Categorias Aleatorias</h2>
@@ -14,43 +15,43 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #00CC66;"><label> Matematicas </label></div>
+        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Matematicas </label></div>
         <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
         <div class="col-lg-4 col-md-4 col-sm-4 text-center box"><label> Su categoria es:  </label></div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #00CC66;"><label> Espanol </label></div>
+        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Espanol </label></div>
         <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: wheat;"><label>  </label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center box" id="output" style="background-color: wheat;"><label> @materia </label></div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #00CC66;"><label> Ciencias </label></div>
+        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Ciencias </label></div>
         <div class="col-lg-5 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" onclick="Hello()" style="background-color: #F75C03;"><label> Aleatoria </label></div>
+        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" onclick="location.reload()" style="background-color: #F75C03;"><label id="btn"> Aleatoria </label></div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #00CC66;"><label> Estudios Sociales </label></div>
+        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Estudios Sociales </label></div>
         <div class="col-lg-5 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" onclick="Hello()" style="background-color: #F1C40F;" ><label> Aceptar </label></div>
+        @*<div class="col-lg-5 col-md-2 col-sm-2 text-center box">
+            <a href="@Url.Action("Main", "QuestionGame", new { Department = materia })">Close Report</a>
+        </div>*@
+        <div class="col-lg-2 col-md-4 col-sm-4 text-center box" style="background-color: #2274A5;"> <a style="color:#212529" href="@Url.Action("Main", "QuestionGame", new { Department = materia })">Aceptar</a></div>
+        
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #00CC66;"><label> Ingles </label></div>
+        <div class="col-lg-3 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><label> Ingles </label></div>
         <div class="col-lg-5 col-md-2 col-sm-2 text-center box"><label>  </label></div>
     </div>
-
-
-
-
-
-
 
 </div>
 
 <script>
-
-    let Hello = () => {
-        alert("Hello")
-    }
-        
+    $(document).ready(function () {
+        let score = 0;
+        saveLocalStorage('scoreVirtualMente', score);
+    });
 </script>
 
+<script src="~/Javascript/RandomCategory.js">
+    
+</script>

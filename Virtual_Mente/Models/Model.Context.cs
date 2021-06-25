@@ -27,11 +27,11 @@ namespace Virtual_Mente.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
         public virtual DbSet<OPCION> OPCION { get; set; }
-        public virtual DbSet<PREGUNTA> PREGUNTA { get; set; }
         public virtual DbSet<REPUESTA_CORRECTA> REPUESTA_CORRECTA { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
+        public virtual DbSet<PREGUNTA> PREGUNTA { get; set; }
         public virtual DbSet<TIPO_JUEGO> TIPO_JUEGO { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

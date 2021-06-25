@@ -5,16 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="436389e00e57415da804aacc79133523" Name="Diagram1">
-        <EntityTypeShape EntityType="VirtualMenteModel.CATEGORIA" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="VirtualMenteModel.OPCION" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VirtualMenteModel.PREGUNTA" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="VirtualMenteModel.REPUESTA_CORRECTA" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="VirtualMenteModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VirtualMenteModel.TIPO_JUEGO" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="VirtualMenteModel.FK_TIPO_JUEGO_CATEGORIA" ManuallyRouted="false" />
-        <AssociationConnector Association="VirtualMenteModel.FK_OPCION_PREGUNTA" ManuallyRouted="false" />
         <AssociationConnector Association="VirtualMenteModel.FK_OPCION_REPUESTA_CORRECTA" ManuallyRouted="false" />
-        <AssociationConnector Association="VirtualMenteModel.FK_PREGUNTA_TIPO_JUEGO" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="VirtualMenteModel.CATEGORIA" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="VirtualMenteModel.PREGUNTA" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="VirtualMenteModel.FK_PREGUNTA_CATEGORIA" />
+        <AssociationConnector Association="VirtualMenteModel.FK_OPCION_PREGUNTA" />
+        <EntityTypeShape EntityType="VirtualMenteModel.TIPO_JUEGO" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="VirtualMenteModel.FK_PREGUNTA_TIPO_JUEGO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
