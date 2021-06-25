@@ -2,9 +2,11 @@
 @{
     ViewBag.Title = "Test";
     Layout = "~/Views/Shared/_LayoutVM.cshtml";
+    String cuento = ViewBag.TipoJuego;
+    String titulo = ViewBag.Titulo;
 }
 
-
+<link rel="stylesheet" type="text/css" href="~/Style/RandomQuestion.css?x=1" />
 <html style=" background-color:#F1C40F">
 <head>
 
@@ -12,12 +14,17 @@
         .header {
             text-align: center;
             height: 400px;
-            padding: 1em;    
+            padding: 1em;
+            font-family: cursive;
+            font-size: 19px;
+            margin-top: 15px;
         }
+
         .header2 {
             text-align: center;
             background-color: #D90368;
         }
+
         .cardStyle {
             background-color: #D90368;
             color: black;
@@ -25,43 +32,49 @@
             font-size: 20px;
             margin-top: 100px;
         }
-        .image{
-            width:200px;
-            height:200px;
-            border-radius:50%;
-            float:initial;
+
+        .image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            float: initial;
             margin-top: 1px;
         }
+
         #Button {
             background-color: #00CC66;
             font-family: cursive;
             font-size: 20px;
-            margin:0px auto;
+            margin: 0px auto;
             width: 100px;
         }
-    
     </style>
 </head>
 
 <body>
 
-    <div class="cardStyle">
+    <div>
         <div class="header">
-            <h3> CUENTO: </h3>
+            <h3> CUENTO:</h3>
             <p class="card-text">
-                Todos esperaban en la granja el gran acontecimiento. El nacimiento de los polluelos de mamá pata. Llevaba días empollándolos y podían llegar en cualquier momento.
-                El día más caluroso del verano mamá pata escuchó de repente…¡cuac, cuac! y vio al levantarse cómo uno por uno empezaban a romper el cascarón. Bueno, todos menos uno.
-                o
+                @cuento
             </p>
-            <div>
-                <img class="image" src="~/CUENTO PATITO FEO.png" height="190" />
-            </div>
+            @*<div>
+                    <img class="image" src="~/CUENTO PATITO FEO.png" height="190" />
+                </div>*@
 
         </div>
     </div>
-    <div class="header2">
-        <div>
-            <button id="Button"> Siguiente </button>
+    <div>
+        <div class="row">
+            <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
+            <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
+            <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: #2274A5;"> <a style="color:#212529" href="@Url.Action("Main", "QuestionGame", new { Department = titulo })">Siguiente</a></div>
         </div>
     </div>
 
@@ -69,3 +82,9 @@
 </body>
 </html>
 
+<script>
+    $(document).ready(function () {
+        let score = 0;
+        saveLocalStorage('scoreVirtualMente', score);
+    });
+</script>

@@ -244,6 +244,7 @@
     <Content Include="Views\Shared\_LayoutVM.cshtml" />
     <Content Include="Views\ChooseGame\Main.cshtml" />
     <Content Include="Views\RandomCategory\test.cshtml" />
+    <Content Include="Views\ShowTextImage\Structure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ShowTextImage\Test.cshtml" />

@@ -53,6 +53,7 @@
           </Key>
           <Property Name="IDTipoJuego" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DescTipoJuego" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Titulo" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_OPCION_PREGUNTA">
           <End Role="PREGUNTA" Type="Self.PREGUNTA" Multiplicity="1" />
@@ -242,7 +243,6 @@
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="CATEGORIA" EntityType="VirtualMenteModel.CATEGORIA" />
           <EntitySet Name="PREGUNTA" EntityType="VirtualMenteModel.PREGUNTA" />
-          <EntitySet Name="TIPO_JUEGO" EntityType="VirtualMenteModel.TIPO_JUEGO" />
           <AssociationSet Name="FK_PREGUNTA_CATEGORIA" Association="VirtualMenteModel.FK_PREGUNTA_CATEGORIA">
             <End Role="CATEGORIA" EntitySet="CATEGORIA" />
             <End Role="PREGUNTA" EntitySet="PREGUNTA" />
@@ -251,6 +251,7 @@
             <End Role="PREGUNTA" EntitySet="PREGUNTA" />
             <End Role="OPCION" EntitySet="OPCION" />
           </AssociationSet>
+          <EntitySet Name="TIPO_JUEGO" EntityType="VirtualMenteModel.TIPO_JUEGO" />
           <AssociationSet Name="FK_PREGUNTA_TIPO_JUEGO" Association="VirtualMenteModel.FK_PREGUNTA_TIPO_JUEGO">
             <End Role="TIPO_JUEGO" EntitySet="TIPO_JUEGO" />
             <End Role="PREGUNTA" EntitySet="PREGUNTA" />
@@ -287,14 +288,6 @@
           <NavigationProperty Name="OPCION" Relationship="VirtualMenteModel.FK_OPCION_PREGUNTA" FromRole="PREGUNTA" ToRole="OPCION" />
           <NavigationProperty Name="TIPO_JUEGO" Relationship="VirtualMenteModel.FK_PREGUNTA_TIPO_JUEGO" FromRole="PREGUNTA" ToRole="TIPO_JUEGO" />
         </EntityType>
-        <EntityType Name="TIPO_JUEGO">
-          <Key>
-            <PropertyRef Name="IDTipoJuego" />
-          </Key>
-          <Property Name="IDTipoJuego" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DescTipoJuego" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PREGUNTA" Relationship="VirtualMenteModel.FK_PREGUNTA_TIPO_JUEGO" FromRole="TIPO_JUEGO" ToRole="PREGUNTA" />
-        </EntityType>
         <Association Name="FK_PREGUNTA_CATEGORIA">
           <End Type="VirtualMenteModel.CATEGORIA" Role="CATEGORIA" Multiplicity="1" />
           <End Type="VirtualMenteModel.PREGUNTA" Role="PREGUNTA" Multiplicity="*" />
@@ -319,6 +312,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TIPO_JUEGO">
+          <Key>
+            <PropertyRef Name="IDTipoJuego" />
+          </Key>
+          <Property Name="IDTipoJuego" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescTipoJuego" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PREGUNTA" Relationship="VirtualMenteModel.FK_PREGUNTA_TIPO_JUEGO" FromRole="TIPO_JUEGO" ToRole="PREGUNTA" />
+        </EntityType>
         <Association Name="FK_PREGUNTA_TIPO_JUEGO">
           <End Type="VirtualMenteModel.TIPO_JUEGO" Role="TIPO_JUEGO" Multiplicity="1" />
           <End Type="VirtualMenteModel.PREGUNTA" Role="PREGUNTA" Multiplicity="*" />
@@ -411,6 +413,7 @@
           <EntitySetMapping Name="TIPO_JUEGO">
             <EntityTypeMapping TypeName="VirtualMenteModel.TIPO_JUEGO">
               <MappingFragment StoreEntitySet="TIPO_JUEGO">
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="DescTipoJuego" ColumnName="DescTipoJuego" />
                 <ScalarProperty Name="IDTipoJuego" ColumnName="IDTipoJuego" />
               </MappingFragment>

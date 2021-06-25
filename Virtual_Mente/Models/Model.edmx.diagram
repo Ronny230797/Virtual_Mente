@@ -11,9 +11,9 @@
         <AssociationConnector Association="VirtualMenteModel.FK_OPCION_REPUESTA_CORRECTA" ManuallyRouted="false" />
         <EntityTypeShape EntityType="VirtualMenteModel.CATEGORIA" Width="1.5" PointX="3" PointY="7" />
         <EntityTypeShape EntityType="VirtualMenteModel.PREGUNTA" Width="1.5" PointX="5.25" PointY="1.125" />
-        <EntityTypeShape EntityType="VirtualMenteModel.TIPO_JUEGO" Width="1.5" PointX="3" PointY="4.625" />
         <AssociationConnector Association="VirtualMenteModel.FK_PREGUNTA_CATEGORIA" />
         <AssociationConnector Association="VirtualMenteModel.FK_OPCION_PREGUNTA" />
+        <EntityTypeShape EntityType="VirtualMenteModel.TIPO_JUEGO" Width="1.5" PointX="3" PointY="1.375" />
         <AssociationConnector Association="VirtualMenteModel.FK_PREGUNTA_TIPO_JUEGO" />
       </Diagram>
     </edmx:Diagrams>
