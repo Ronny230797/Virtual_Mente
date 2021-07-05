@@ -138,7 +138,6 @@ namespace Virtual_Mente.Controllers
             }
 
             Random r1 = new Random();
-
             int aleatorio = r1.Next(listaPreguntasCat.Count);
             string txt = listaPreguntasCat[aleatorio].descripcion;
             idPregunta = listaPreguntasCat[aleatorio].id;
@@ -162,7 +161,23 @@ namespace Virtual_Mente.Controllers
 
         }
 
+        public JsonResult isCorrectCuento(int id, string respuesta)
+        {
 
+            VirtualMenteEntities db = new VirtualMenteEntities();
+            string response = "Ok";
+
+            var result = db.OPCION.FirstOrDefault(x => x.IDPeguntaFK == id && x.REPUESTA_CORRECTA.DescRepuesta == respuesta);
+
+
+            if (result == null)
+            {
+                response = "Fail";
+            }
+
+            return Json(response, JsonRequestBehavior.AllowGet);
+
+        }
         public class Pregunta
         {
             public int id { set; get; }

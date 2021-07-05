@@ -79,6 +79,30 @@
 
     });
 
+    $('.button').click(function () {
+        let idQuestion = $("#mainDiv").attr("data-id");
+        let selected = $(this).attr("data-id");
+        jQuery.ajax({
+            type: "GET",
+            dataType: "json",
+            async: false,
+            url: "/QuestionGame/isCorrectCuento",
+            data: { id: idQuestion, respuesta: selected },
+            success: function (data) {
 
+                if (data == 'Ok') {
+                    Swal.fire(`Respuesta Correcta`);
+                    let score = window.localStorage.getItem('scoreCuentaMente');
+                    console.log(score)
+                    score = parseFloat(score) + parseFloat(1);
+                    saveLocalStorage('scoreCuentaMente', score);
+                } else {
+                    Swal.fire(`Respuesta Incorrecta`);
+                }
+
+            },
+        });
+
+    });
 
 </script>
