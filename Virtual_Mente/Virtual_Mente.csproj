@@ -127,7 +127,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ChooseGameController.cs" />
+    <Compile Include="Controllers\correctAnwserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuestionGameStoryController.cs" />
     <Compile Include="Controllers\RandomCategoryController.cs" />
     <Compile Include="Controllers\ShowTextImageController.cs" />
     <Compile Include="Controllers\QuestionGameController.cs" />
@@ -189,8 +191,10 @@
     <Content Include="Img\ESPAÑOL.png" />
     <Content Include="Img\ESTUDIOS SOCIALES.png" />
     <Content Include="Img\INGLÉS.png" />
+    <Content Include="Img\La_liebre_y_la_tortuga_1.jpg" />
     <Content Include="Img\LOGO.png" />
     <Content Include="Img\MATEMÁTICA.png" />
+    <Content Include="Img\Pinocho_1.jpg" />
     <Content Include="Img\TRIVIALMENTE.png" />
     <Content Include="Javascript\General.js" />
     <Content Include="Javascript\Main-ChooseGame.js" />
@@ -245,6 +249,9 @@
     <Content Include="Views\ChooseGame\Main.cshtml" />
     <Content Include="Views\RandomCategory\test.cshtml" />
     <Content Include="Views\ShowTextImage\Structure.cshtml" />
+    <Content Include="Views\correctAnwser\Index.cshtml" />
+    <Content Include="Views\QuestionGameStory\Main.cshtml" />
+    <Content Include="Views\QuestionGameStory\QuestionGameStory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ShowTextImage\Test.cshtml" />

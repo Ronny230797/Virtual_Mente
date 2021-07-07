@@ -1,5 +1,5 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Style/StructureQuestion.css?x=1" />
-@{ 
+@{
     string dep = ViewBag.Dep;
     string pregunta = ViewBag.Pregunta;
     string opcion1 = ViewBag.Opcion1;
@@ -19,17 +19,16 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion1"><label>@opcion1</label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion1"> <label>@opcion1</label></div>
         <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion2">@opcion2</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button"style="margin-left:35px;" data-id="@opcion2"><label>@opcion2 </label> </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion3"><label>@opcion3</label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button"style="margin-left:30px;" data-id="@opcion3"><label>@opcion3</label></div>
         <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion4">@opcion4</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion4"><label> @opcion4 </label></div>
     </div>
 </div>
-
 <script>
 
     $(document).ready(function () {
@@ -63,46 +62,20 @@
             url: "/QuestionGame/isCorrect",
             data: { id: idQuestion, respuesta: selected },
             success: function (data) {
-               
+
                 if (data == 'Ok') {
                     Swal.fire(`Respuesta Correcta`);
                     let score = window.localStorage.getItem('scoreVirtualMente');
                     console.log(score)
                     score = parseFloat(score) + parseFloat(1);
                     saveLocalStorage('scoreVirtualMente', score);
+                    
                 } else {
                     Swal.fire(`Respuesta Incorrecta`);
                 }
-
+              
             },
         });
 
     });
-
-    $('.button').click(function () {
-        let idQuestion = $("#mainDiv").attr("data-id");
-        let selected = $(this).attr("data-id");
-        jQuery.ajax({
-            type: "GET",
-            dataType: "json",
-            async: false,
-            url: "/QuestionGame/isCorrectCuento",
-            data: { id: idQuestion, respuesta: selected },
-            success: function (data) {
-
-                if (data == 'Ok') {
-                    Swal.fire(`Respuesta Correcta`);
-                    let score = window.localStorage.getItem('scoreCuentaMente');
-                    console.log(score)
-                    score = parseFloat(score) + parseFloat(1);
-                    saveLocalStorage('scoreCuentaMente', score);
-                } else {
-                    Swal.fire(`Respuesta Incorrecta`);
-                }
-
-            },
-        });
-
-    });
-
 </script>

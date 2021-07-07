@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_LayoutVM.cshtml";
     String cuento = ViewBag.TipoJuego;
     String titulo = ViewBag.Titulo;
+    String routeImagine = "";
 }
 
 <link rel="stylesheet" type="text/css" href="~/Style/RandomQuestion.css?x=1" />
@@ -56,12 +57,20 @@
     <div>
         <div class="header">
             <h3> CUENTO:</h3>
-            <p class="card-text">
+            <p class="card-text" style="text-align:justify">
                 @cuento
             </p>
-            @*<div>
-                    <img class="image" src="~/CUENTO PATITO FEO.png" height="190" />
-                </div>*@
+            <script>
+                   var condicion = @titulo;
+                  if (condicion == "Patito Feo") {
+                     @routeImagine= "~/CUENTO PATITO FEO.png";
+                } if (condicion == "Pinocho") {
+                     @routeImagine= "~/Pinocho_1.jpg";
+                } else {
+                     @routeImagine= "~/La_liebre_y_la_tortuga_1.jpg";
+                }
+            </script>
+            <img class="image" src=@routeImagine height="190" />
 
         </div>
     </div>
@@ -74,7 +83,7 @@
 
         <div class="row">
             <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-            <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: #2274A5;"> <a style="color:#212529" href="@Url.Action("Main", "QuestionGame", new { Department = titulo })">Siguiente</a></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: #2274A5; margin-top: 10px"> <a style="color:#212529" href="@Url.Action("Main", "QuestionGameStory", new { Department = titulo })">Siguiente</a></div>
         </div>
     </div>
 

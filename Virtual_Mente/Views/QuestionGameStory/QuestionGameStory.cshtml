@@ -1,0 +1,74 @@
+﻿<link rel="stylesheet" type="text/css" href="~/Style/StructureQuestion.css?x=1" />
+
+@{
+    string dep = ViewBag.Dep;
+    string pregunta = ViewBag.Pregunta;
+    string opcion1 = ViewBag.Opcion1;
+    string opcion2 = ViewBag.Opcion2;
+    string opcion3 = ViewBag.Opcion3;
+    string opcion4 = ViewBag.Opcion4;
+    int idpregunta = ViewBag.IdPregunta;
+}
+<div class="container" id="mainDiv" data-id="@idpregunta">
+
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 logo" id="xxx">
+
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 text-center cardback">
+            <p>@pregunta</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion1"> @*<a style="color: black" href="@Url.Action("Index","correctAnwser")" >@opcion1  </a>*@ <label for="btnOpcion" onclick="disableBoton()">@opcion1</label></div>
+        <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion2"><label for="btnOpcion" onclick="disableBoton()">@opcion2 </label> </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion3"><label for="btnOpcion" onclick="disableBoton()">@opcion3</label></div>
+        <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion4"><label for="btnOpcion" onclick="disableBoton()"> @opcion4 </label></div>
+    </div>
+    <script>
+        function disableBoton() {
+            document.getElementById("btnOpcion").disabled = true;
+        }
+    </script>
+
+</div>
+<div class="row">
+    <div class="col-lg-4 col-md-3 col-sm-3 text-center"></div>
+    <div style="background: #D90368" class="col-lg-4 col-md-4 col-sm-4 text-center button"><a style="color: black;" href="@Url.Action("Index","correctAnwser")" @*onclick="location.reload();"*@ >Siguiente  </a> </div>
+
+</div>
+
+
+<script>
+
+    $('.button').click(function () {
+        let idQuestion = $("#mainDiv").attr("data-id");
+        let selected = $(this).attr("data-id");
+        jQuery.ajax({
+            type: "GET",
+            dataType: "json",
+            async: false,
+            url: "/QuestionGameStory/isCorrectCuento",
+            data: { id: idQuestion, respuesta: selected },
+            success: function (data) {
+
+                if (data == 'Ok') {
+                    let score = window.localStorage.getItem('scoreCuentaMente');
+                    console.log(score)
+                    score = parseFloat(score) + parseFloat(1);
+                    saveLocalStorage('scoreCuentaMente', score);
+                    Swal.fire(`Respuesta Correcta`, 'Score: '+score);
+                } else {
+                    Swal.fire(`Respuesta Incorrecta`, 'La respuesta correcta es:' + data);
+                }
+
+            },
+        });
+
+    });
+
+</script>
