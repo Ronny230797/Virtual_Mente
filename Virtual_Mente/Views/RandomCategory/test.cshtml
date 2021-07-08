@@ -47,8 +47,35 @@
 
 <script>
     $(document).ready(function () {
-        let score = 0;
+        let score;
+
+        let ronda;
+
+        let scoreLocalStorage = window.localStorage.getItem('scoreVirtualMente');
+
+        let rondaLocalStorage = window.localStorage.getItem('rondaVirtualMente');
+
+        if (scoreLocalStorage == 0) {
+            score = 0;
+        } else if (scoreLocalStorage == undefined) {
+            score = 0;
+        }
+        else if (scoreLocalStorage > 0){
+            score = scoreLocalStorage;
+        }
+
+
+        if (rondaLocalStorage == 1) {
+            ronda = 1;
+        } else if (rondaLocalStorage == undefined) {
+            ronda = 1;
+        }
+        else if (rondaLocalStorage > 1) {
+            ronda = rondaLocalStorage;
+        }
+
         saveLocalStorage('scoreVirtualMente', score);
+        saveLocalStorage('rondaVirtualMente', ronda);
     });
 </script>
 

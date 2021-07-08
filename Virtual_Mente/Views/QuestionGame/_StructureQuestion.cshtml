@@ -1,5 +1,5 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Style/StructureQuestion.css?x=1" />
-@{ 
+@{
     string dep = ViewBag.Dep;
     string pregunta = ViewBag.Pregunta;
     string opcion1 = ViewBag.Opcion1;
@@ -19,16 +19,28 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion1"><label>@opcion1</label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button fondo" style="margin-left:30px;" id="opcion1" data-id="@opcion1"><label>@opcion1</label></div>
         <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion2">@opcion2</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button fondo" style="margin-left:35px;" id="opcion2" data-id="@opcion2">@opcion2</div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion3"><label>@opcion3</label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button fondo" style="margin-left:30px;" id="opcion3" data-id="@opcion3"><label>@opcion3</label></div>
         <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion4">@opcion4</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button fondo" style="margin-left:35px;" id="opcion4" data-id="@opcion4">@opcion4</div>
+    </div>
+    <div class="row">
+        <h1 id="ronda" class="text-center col-lg-12 col-md-12 col-sm-12" style="padding-top:20px" ></h1>
     </div>
 </div>
+
+<style>
+
+    .fondo:hover {
+        background-color: #2274A5;
+        color: white;
+    }
+
+</style>
 
 <script>
 
@@ -53,6 +65,10 @@
     });
 
 
+    let ronda = window.localStorage.getItem('rondaVirtualMente');
+
+    $('#ronda').text(`Ronda Actual: ${ronda}/10`);
+
     $('.button').click(function () {
         let idQuestion = $("#mainDiv").attr("data-id");
         let selected = $(this).attr("data-id");
@@ -63,22 +79,48 @@
             url: "/QuestionGame/isCorrect",
             data: { id: idQuestion, respuesta: selected },
             success: function (data) {
-               
+
+                ronda = parseFloat(ronda) + parseFloat(1);
+                saveLocalStorage('rondaVirtualMente', ronda);
+
+
+                let score = window.localStorage.getItem('scoreVirtualMente');
                 if (data == 'Ok') {
-                    Swal.fire(`Respuesta Correcta`);
-                    let score = window.localStorage.getItem('scoreVirtualMente');
-                    console.log(score)
                     score = parseFloat(score) + parseFloat(1);
                     saveLocalStorage('scoreVirtualMente', score);
+
+                    if (ronda == 11) {
+                        Swal.fire(`Resumen del juego \n Respuestas correctas ${score} \n Respuestas incorrectas ${10 - score} \n Puntos obtenidos ${score} \n Felicidades, has terminado el juego!`)
+                            .then(function () {
+                                window.location.href = '@Url.Action("Main", "ChooseGame")';
+                            });
+
+                    } else {
+                        Swal.fire(`Respuesta Correcta \nSu puntuación es de: ` + score)
+                        .then(function () {
+                                window.location.href = '@Url.Action("test", "RandomCategory")';
+                            });
+                    }
+
                 } else {
-                    Swal.fire(`Respuesta Incorrecta`);
+
+                    if (ronda == 11) {
+                        Swal.fire(`Resumen del juego \n Respuestas correctas ${score} \n Respuestas incorrectas ${10 - score} \n Puntos obtenidos ${score} \n Felicidades, has terminado el juego!`)
+                            .then(function () {
+                                window.location.href = '@Url.Action("Main", "ChooseGame")';
+                            });
+
+                    } else {
+                    Swal.fire(`Respuesta Incorrecta \nLa respuesta correcta es: ${data}`)
+                        .then(function () {
+                                window.location.href = '@Url.Action("test", "RandomCategory")';
+                            });
+                    }
+
                 }
 
             },
         });
 
     });
-
-
-
 </script>

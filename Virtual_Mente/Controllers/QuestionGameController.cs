@@ -150,12 +150,19 @@ namespace Virtual_Mente.Controllers
             VirtualMenteEntities db = new VirtualMenteEntities();
             string response = "Ok";
 
-            var result = db.OPCION.FirstOrDefault(x => x.IDPeguntaFK == id && x.REPUESTA_CORRECTA.DescRepuesta ==  respuesta);
+            var respuestaCorrecta = db.OPCION
+                .Where(z => z.IDPeguntaFK == id)
+                .Select(xy => xy.REPUESTA_CORRECTA.DescRepuesta)
+                .FirstOrDefault();
 
 
-            if (result == null)
+            if (respuestaCorrecta.Equals(respuesta))
             {
-                response = "Fail";
+                response = "Ok";
+            }
+            else
+            {
+                response = respuestaCorrecta;
             }
 
             return Json(response, JsonRequestBehavior.AllowGet);
