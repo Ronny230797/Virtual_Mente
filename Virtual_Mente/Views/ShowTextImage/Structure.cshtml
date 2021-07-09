@@ -19,34 +19,56 @@
     </div>
     <div class="row">
         <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><a style="color:#212529"  href="@Url.Action("Test","ShowTextImage",new { Titulo = titulo })"> @titulo </a></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><a style="color:#212529" href="@Url.Action("Test","ShowTextImage",new { Titulo = titulo })"> @titulo </a></div>
 
     </div>
     <div class="row">
         <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><a style="color:#212529" href="@Url.Action("Test", new { Titulo = titulo2 })"> @titulo2 </a ></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><a style="color:#212529" href="@Url.Action("Test", new { Titulo = titulo2 })"> @titulo2 </a></div>
 
     </div>
     <div class="row">
         <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
         <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: #D90368;"><a style="color:#212529" href="@Url.Action("Test", new { Titulo = titulo3 })"> La liebre y la tortuga </a></div>
-        </div>
-    
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: #D90368; margin-top: 100px"><a style="color:#212529" href="@Url.Action("Main","ChooseGame")"> Salir </a></div>
+    </div>
+
 
 </div>
 
 <script>
     $(document).ready(function () {
         let score;
+
+        let ronda;
+
         let scoreLocalStorage = window.localStorage.getItem('scoreCuentaMente');
+
+        let rondaLocalStorage = window.localStorage.getItem('rondaCuentaMente');
+
         if (scoreLocalStorage == 0) {
             score = 0;
         } else if (scoreLocalStorage == undefined) {
             score = 0;
-        } else if (scoreLocalStorage > 0) {
+        }
+        else if (scoreLocalStorage > 0) {
             score = scoreLocalStorage;
         }
+
+
+        if (rondaLocalStorage == 1) {
+            ronda = 1;
+        } else if (rondaLocalStorage == undefined) {
+            ronda = 1;
+        }
+        else if (rondaLocalStorage > 1) {
+            ronda = rondaLocalStorage;
+        }
         saveLocalStorage('scoreCuentaMente', score);
+        saveLocalStorage('rondaCuentaMente', ronda);
     });
 </script>
 <script src="~/Javascript/RandomCategory.js"></script>
