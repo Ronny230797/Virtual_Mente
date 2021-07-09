@@ -2,7 +2,10 @@
 
 //Document Ready
 $(document).ready(function () {
-    deleteLocalStorage('scoreCuentaMente');
+
+    deleteLocalStorage('rondaVirtualMente');
+    deleteLocalStorage('scoreVirtualMente');
+
 });
 
 
