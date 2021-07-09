@@ -2,6 +2,7 @@
 
 //Document Ready
 $(document).ready(function () {
+    deleteLocalStorage('scoreCuentaMente');
 });
 
 

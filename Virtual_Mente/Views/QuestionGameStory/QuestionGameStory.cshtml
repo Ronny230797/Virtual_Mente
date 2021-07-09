@@ -20,27 +20,17 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion1"> @*<a style="color: black" href="@Url.Action("Index","correctAnwser")" >@opcion1  </a>*@ <label for="btnOpcion" onclick="disableBoton()">@opcion1</label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion1"> <label >@opcion1</label></div>
         <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion2"><label for="btnOpcion" onclick="disableBoton()">@opcion2 </label> </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion2"><label >@opcion2 </label> </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion3"><label for="btnOpcion" onclick="disableBoton()">@opcion3</label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion3"><label>@opcion3</label></div>
         <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion4"><label for="btnOpcion" onclick="disableBoton()"> @opcion4 </label></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion4"><label > @opcion4 </label></div>
     </div>
-    <script>
-        function disableBoton() {
-            document.getElementById("btnOpcion").disabled = true;
-        }
-    </script>
-
 </div>
-<div class="row">
-    <div class="col-lg-4 col-md-3 col-sm-3 text-center"></div>
-    <div style="background: #D90368" class="col-lg-4 col-md-4 col-sm-4 text-center button"><a style="color: black;" href="@Url.Action("Index","correctAnwser")" @*onclick="location.reload();"*@ >Siguiente  </a> </div>
 
-</div>
 
 
 <script>
@@ -58,12 +48,20 @@
 
                 if (data == 'Ok') {
                     let score = window.localStorage.getItem('scoreCuentaMente');
-                    console.log(score)
+                    console.log(score);
                     score = parseFloat(score) + parseFloat(1);
                     saveLocalStorage('scoreCuentaMente', score);
-                    Swal.fire(`Respuesta Correcta`, 'Score: '+score);
+                    Swal.fire(`Respuesta Correcta \n Su puntuacion es de: ` + score)
+                        .then(function () {
+                                window.location.href = '@Url.Action("Structure", "ShowTextImage")';
+                            });
+
                 } else {
-                    Swal.fire(`Respuesta Incorrecta`, 'La respuesta correcta es:' + data);
+                    Swal.fire(`Respuesta Incorrecta \n La respuesta correcta es: ${data}`)
+                        .then(function () {
+                                window.location.href = '@Url.Action("Structure", "ShowTextImage")';
+                            });
+
                 }
 
             },

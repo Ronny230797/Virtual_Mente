@@ -11,3 +11,6 @@ let getLocalStorage = (key) => {
 let clearLocalStorage = () => {
     window.localStorage.clear();
 }
+let deleteLocalStorage = (key) => {
+    window.localStorage.removeItem(key);
+}

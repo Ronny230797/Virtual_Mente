@@ -37,7 +37,15 @@
 
 <script>
     $(document).ready(function () {
-        let score = 0;
+        let score;
+        let scoreLocalStorage = window.localStorage.getItem('scoreCuentaMente');
+        if (scoreLocalStorage == 0) {
+            score = 0;
+        } else if (scoreLocalStorage == undefined) {
+            score = 0;
+        } else if (scoreLocalStorage > 0) {
+            score = scoreLocalStorage;
+        }
         saveLocalStorage('scoreCuentaMente', score);
     });
 </script>
