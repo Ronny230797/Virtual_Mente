@@ -190,10 +190,11 @@
     <Content Include="Img\ESPAÑOL.png" />
     <Content Include="Img\ESTUDIOS SOCIALES.png" />
     <Content Include="Img\INGLÉS.png" />
-    <Content Include="Img\La_liebre_y_la_tortuga_1.jpg" />
+    <Content Include="Img\liebre.jpg" />
     <Content Include="Img\LOGO.png" />
     <Content Include="Img\MATEMÁTICA.png" />
-    <Content Include="Img\Pinocho_1.jpg" />
+    <Content Include="Img\Patito_feo.jpg" />
+    <Content Include="Img\Pinocho.jpg" />
     <Content Include="Img\TRIVIALMENTE.png" />
     <Content Include="Javascript\General.js" />
     <Content Include="Javascript\Main-ChooseGame.js" />
