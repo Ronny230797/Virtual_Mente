@@ -1,0 +1,94 @@
+﻿<link rel="stylesheet" type="text/css" href="~/Style/StructureQuestion.css?x=1" />
+
+@{
+    string dep = ViewBag.Dep;
+    string pregunta = ViewBag.Pregunta;
+    string opcion1 = ViewBag.Opcion1;
+    string opcion2 = ViewBag.Opcion2;
+    string opcion3 = ViewBag.Opcion3;
+    string opcion4 = ViewBag.Opcion4;
+    int idpregunta = ViewBag.IdPregunta;
+}
+<div class="container" id="mainDiv" data-id="@idpregunta">
+
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 logo" id="xxx">
+
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 text-center cardback">
+            <p>@pregunta</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion1"> <label >@opcion1</label></div>
+        <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion2"><label >@opcion2 </label> </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:30px;" data-id="@opcion3"><label>@opcion3</label></div>
+        <div class="col-lg-3 col-md-3 col-sm-3 text-center"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center button" style="margin-left:35px;" data-id="@opcion4"><label > @opcion4 </label></div>
+    </div>
+</div>
+
+
+
+<script>
+    let ronda = window.localStorage.getItem('rondaCuentaMente');
+    $('.button').click(function () {
+        let idQuestion = $("#mainDiv").attr("data-id");
+        let selected = $(this).attr("data-id");
+        jQuery.ajax({
+            type: "GET",
+            dataType: "json",
+            async: false,
+            url: "/QuestionGameStory/isCorrectCuento",
+            data: { id: idQuestion, respuesta: selected },
+            success: function (data) {
+                ronda = parseFloat(ronda) + parseFloat(1);
+                saveLocalStorage('rondaCuentaMente', ronda);
+
+
+                let score = window.localStorage.getItem('scoreCuentaMente');
+                if (data == 'Ok') {
+                    score = parseFloat(score) + parseFloat(1);
+                    saveLocalStorage('scoreCuentaMente', score);
+
+                    if (ronda == 4) {
+                        Swal.fire(`Resumen del juego \n Respuestas correctas ${score} \n Respuestas incorrectas ${3- score} \n Puntos obtenidos ${score} \n Felicidades, has terminado el juego!`)
+                            .then(function () {
+                                window.location.href = '@Url.Action("Main", "ChooseGame")';
+                            });
+
+                    } else {
+                        Swal.fire(`Respuesta Correcta \nSu puntuación es de: ` + score)
+                        .then(function () {
+                                window.location.href = '@Url.Action("Structure", "ShowTextImage")';
+                            });
+                    }
+
+                } else {
+
+                    if (ronda == 4) {
+                        Swal.fire(`Resumen del juego \n Respuestas correctas ${score} \n Respuestas incorrectas ${3 - score} \n Puntos obtenidos ${score} \n Felicidades, has terminado el juego!`)
+                            .then(function () {
+                                window.location.href = '@Url.Action("Main", "ChooseGame")';
+                            });
+
+                    } else {
+                    Swal.fire(`Respuesta Incorrecta \nLa respuesta correcta es: ${data}`)
+                        .then(function () {
+                                window.location.href = '@Url.Action("Structure", "ShowTextImage")';
+                            });
+                    }
+
+                }
+
+            },
+        });
+
+    });
+
+
+
+</script>

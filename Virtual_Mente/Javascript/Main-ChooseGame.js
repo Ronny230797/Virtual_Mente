@@ -2,6 +2,13 @@
 
 //Document Ready
 $(document).ready(function () {
+
+    //deleteLocalStorage('rondaVirtualMente');
+    //deleteLocalStorage('scoreVirtualMente');
+    //deleteLocalStorage('scoreCuentaMente');
+    //deleteLocalStorage('rondaCuentaMente');
+    clearLocalStorage();
+
 });
 
 

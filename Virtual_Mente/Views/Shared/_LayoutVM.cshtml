@@ -20,9 +20,9 @@
             <img src="~/Img/LOGO.png" style="width:70px;height:70px;" />
             VIRTUALMENTE
         </a>
-        <div class="navbar-brand navbar-right"><a href="#" style="color:white;">Inicio</a></div>
-        <div class="navbar-brand navbar-right"><a href="#" style="color:white;">TrivialMENTE</a></div>
-        <div class="navbar-brand navbar-right"><a href="#" style="color:white;">CuentaMENTE</a></div>
+        <div class="navbar-brand navbar-right"><a href='@Url.Action("Main", "ChooseGame")' style="color:white;">Inicio</a></div>
+        <div class="navbar-brand navbar-right"><a href='@Url.Action("test", "RandomCategory")' style="color:white;">TrivialMENTE</a></div>
+        <div class="navbar-brand navbar-right"><a href='@Url.Action("Structure", "ShowTextImage")' style="color:white;">CuentaMENTE</a></div>
     </nav>
     <div>
         @RenderBody()

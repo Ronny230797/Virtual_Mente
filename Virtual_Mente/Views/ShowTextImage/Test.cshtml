@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_LayoutVM.cshtml";
     String cuento = ViewBag.TipoJuego;
     String titulo = ViewBag.Titulo;
+    String image = "/Img/" + @titulo.Replace(" ", "_") + ".jpg";
 }
 
 <link rel="stylesheet" type="text/css" href="~/Style/RandomQuestion.css?x=1" />
@@ -56,13 +57,10 @@
     <div>
         <div class="header">
             <h3> CUENTO:</h3>
-            <p class="card-text">
+            <p class="card-text" style="text-align:justify">
                 @cuento
             </p>
-            @*<div>
-                    <img class="image" src="~/CUENTO PATITO FEO.png" height="190" />
-                </div>*@
-
+            <img class="image" src=@image />
         </div>
     </div>
     <div>
@@ -73,8 +71,9 @@
         </div>
 
         <div class="row">
+            <div class="col-lg-3 col-md-2 col-sm-2 text-center box"><label>  </label></div>
             <div class="col-lg-4 col-md-2 col-sm-2 text-center box"><label>  </label></div>
-            <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: #2274A5;"> <a style="color:#212529" href="@Url.Action("Main", "QuestionGame", new { Department = titulo })">Siguiente</a></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 text-center box" style="background-color: #2274A5; margin-top: 10px" > <a style="color:#212529" href="@Url.Action("Main", "QuestionGameStory", new { Department = titulo })">Siguiente</a></div>
         </div>
     </div>
 
@@ -82,9 +81,3 @@
 </body>
 </html>
 
-<script>
-    $(document).ready(function () {
-        let score = 0;
-        saveLocalStorage('scoreVirtualMente', score);
-    });
-</script>

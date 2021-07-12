@@ -7,7 +7,7 @@ using Virtual_Mente.Models;
 
 namespace Virtual_Mente.Controllers
 {
-    public class QuestionGameController : Controller
+    public class QuestionGameStoryController : Controller
     {
         int idPregunta;
         string opcion1 = "";
@@ -15,6 +15,18 @@ namespace Virtual_Mente.Controllers
         string opcion3 = "";
         string opcion4 = "";
 
+        // GET: QuestionGameStory
+        public ActionResult QuestionGameStory(string Department = "")
+        {
+            ViewBag.Dep = Department;
+            ViewBag.Pregunta = traerPreguntas(Department);
+            ViewBag.IdPregunta = traerOpciones();
+            ViewBag.Opcion1 = opcion1;
+            ViewBag.Opcion2 = opcion2;
+            ViewBag.Opcion3 = opcion3;
+            ViewBag.Opcion4 = opcion4;
+            return PartialView();
+        }
         public ActionResult Main(string Department = "")
         {
             ViewBag.Department = Department;
@@ -26,20 +38,6 @@ namespace Virtual_Mente.Controllers
             ViewBag.Opcion4 = opcion4;
             return View();
         }
-
-        public ActionResult _StructureQuestion(string Depart)
-        {
-            ViewBag.Dep = Depart;
-            ViewBag.Pregunta = traerPreguntas(Depart);
-            ViewBag.IdPregunta = traerOpciones();
-            ViewBag.Opcion1 = opcion1;
-            ViewBag.Opcion2 = opcion2;
-            ViewBag.Opcion3 = opcion3;
-            ViewBag.Opcion4 = opcion4;
-            return PartialView();
-        }
-
-        // DIVIDIR ESTE METODO
         public string traerPreguntas(string Department = "")
         {
             int idCate = 0;
@@ -48,7 +46,15 @@ namespace Virtual_Mente.Controllers
             VirtualMenteEntities db = new VirtualMenteEntities();
 
             var exist = db.CATEGORIA.FirstOrDefault(x => x.DescCategoria == Department);
-               idCate = exist.IDcategoria;
+
+
+            if (exist == null)
+            {
+                txt = traerPreguntasCuento(Department);
+            }
+            else
+            {
+                idCate = exist.IDcategoria;
 
                 List<Pregunta> list = db.PREGUNTA.Select(x => new Pregunta
                 {
@@ -70,7 +76,8 @@ namespace Virtual_Mente.Controllers
                 txt = listaPreguntasCat[aleatorio].descripcion;
                 idPregunta = listaPreguntasCat[aleatorio].id;
 
-            
+
+            }
 
             return txt;
         }
@@ -106,17 +113,46 @@ namespace Virtual_Mente.Controllers
             return idPregunta;
 
         }
-        
-          public JsonResult isCorrect(int id, string respuesta) {
+
+
+        public string traerPreguntasCuento(string titulo = "")
+        {
+            List<Pregunta> listaPreguntasCat = new List<Pregunta>();
+            VirtualMenteEntities db = new VirtualMenteEntities();
+            var exist = db.TIPO_JUEGO.FirstOrDefault(x => x.Titulo == titulo);
+            List<Pregunta> list = db.PREGUNTA.Select(x => new Pregunta
+            {
+                id = x.IDpregunta,
+                descripcion = x.DescPregunta,
+                idTipoJuego = x.IDTipoJuegoFK,
+                idCategoria = x.IDCategoriaFK
+            }).ToList();
+
+            foreach (Pregunta var in list)
+            {
+                if (exist.IDTipoJuego == var.idTipoJuego)
+                {
+                    listaPreguntasCat.Add(var);
+                }
+            }
+
+            Random r1 = new Random();
+            int aleatorio = r1.Next(listaPreguntasCat.Count);
+            string txt = listaPreguntasCat[aleatorio].descripcion;
+            idPregunta = listaPreguntasCat[aleatorio].id;
+           
+            return txt;
+        }
+        public JsonResult isCorrectCuento(int id, string respuesta)
+        {
 
             VirtualMenteEntities db = new VirtualMenteEntities();
             string response = "Ok";
-
+                        
             var respuestaCorrecta = db.OPCION
                 .Where(z => z.IDPeguntaFK == id)
                 .Select(xy => xy.REPUESTA_CORRECTA.DescRepuesta)
                 .FirstOrDefault();
-
 
             if (respuestaCorrecta.Equals(respuesta))
             {
@@ -130,8 +166,7 @@ namespace Virtual_Mente.Controllers
             return Json(response, JsonRequestBehavior.AllowGet);
 
         }
-
-          public class Pregunta
+        public class Pregunta
         {
             public int id { set; get; }
             public string descripcion { set; get; }
